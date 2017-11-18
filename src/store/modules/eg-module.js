@@ -2,10 +2,12 @@ import api from '../../api/eg-api'
 import * as types from '../mutation-types'
 
 const state = {
+  response: {},
   someResources: []
 }
 
 const getters = {
+  response: state => state.response,
   someResources: state => state.someResources
 }
 
