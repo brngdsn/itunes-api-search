@@ -17,10 +17,10 @@
 
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-          <router-link tag="a" class="navbar-item" to="/rest-client">
-            rest-client
+          <router-link tag="a" class="navbar-item" to="/home">
+            home
           </router-link>
-          <router-link class="navbar-item" to="/some-resources">
+          <!-- <router-link class="navbar-item" to="/some-resources">
             some-resources
           </router-link>
           <router-link class="navbar-item" to="/generic-rest-client">
@@ -34,7 +34,7 @@
           </router-link>
           <router-link class="navbar-item" to="/mapbox-geo-client">
             mapbox-geo-client
-          </router-link>
+          </router-link> -->
           <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="/documentation/overview/start/">
               Docs

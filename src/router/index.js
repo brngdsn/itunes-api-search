@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import SomeResources from '@/components/SomeResources'
+import Home from '@/components/Home'
 import RESTClient from '@/components/RESTClient'
 import GenericRestClient from '@/components/GenericRestClient'
 import GenericRestClientV2 from '@/components/GenericRestClientV2'
@@ -12,6 +12,11 @@ Vue.use(Router)
 export default new Router({
   linkActiveClass: 'is-active',
   routes: [
+    {
+      path: '/home',
+      name: 'Home',
+      component: Home
+    },
     {
       path: '/mapbox-geo-client',
       name: 'MapboxGeoClient',
@@ -37,14 +42,14 @@ export default new Router({
       name: 'RESTClient',
       component: RESTClient
     },
-    {
-      path: '/some-resources',
-      name: 'SomeResources',
-      component: SomeResources
-    },
+    // {
+    //   path: '/some-resources',
+    //   name: 'SomeResources',
+    //   component: SomeResources
+    // },
     {
       path: '/',
-      redirect: '/some-resources'
+      redirect: '/home'
     }
   ]
 })
