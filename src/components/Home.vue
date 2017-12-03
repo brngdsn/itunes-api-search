@@ -110,7 +110,7 @@
     },
     data () {
       return {
-        term: ``,
+        term: `kaskade`,
         response: null,
         success: true,
         busy: false
@@ -185,6 +185,7 @@
       this.$watch('term', () => {
         this.response = null
       })
+      this.onSearch()
     }
   }
 </script>
