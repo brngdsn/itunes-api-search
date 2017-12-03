@@ -1086,6 +1086,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bootstrap-css@4.0.0-alpha.5:
+  version "4.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/bootstrap-css/-/bootstrap-css-4.0.0-alpha.5.tgz#2001956f56893501f19cf0d956d0cd0dad3fe287"
+
 bops@0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/bops/-/bops-0.0.6.tgz#082d1d55fa01e60dbdc2ebc2dba37f659554cf3a"
@@ -7483,6 +7487,12 @@ vt-pbf@^3.0.1:
     "@mapbox/vector-tile" "^1.3.0"
     pbf "^3.0.5"
 
+vue-audio@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/vue-audio/-/vue-audio-0.0.9.tgz#057c0faf9ea33acada2866cfe4590eb4b0d8fce4"
+  dependencies:
+    vue "^2.5.8"
+
 vue-hot-reload-api@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.1.0.tgz#9ca58a6e0df9078554ce1708688b6578754d86de"
@@ -7545,6 +7555,10 @@ vue2-google-maps@^0.8.4:
 vue@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.2.tgz#a9855261f191c978cc0dc1150531b8d08149b58c"
+
+vue@^2.5.8:
+  version "2.5.9"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.9.tgz#b2380cd040915dca69881dafd121d760952e65f7"
 
 vuex@^2.4.0:
   version "2.4.0"

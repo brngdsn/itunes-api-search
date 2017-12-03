@@ -1,264 +1,113 @@
 <template><div class="home">
 
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <div class="container">
+
+        <div class="columns is-vcentered">
+          <div class="column is-one-third is-left">
+            <p class="title">iTunes <strong>API</strong></p>
+            <p class="subtitle">Search Audio and Video</p>
+          </div>
+
+          <div class="column">
+
+              <div>
+                <div class="field is-grouped">
+                  <div class="control has-icons-left is-expanded">
+                    <input type="text"
+                      v-model="term"
+                      value=""
+                      class="input is-flat required" 
+                      placeholder="artist name"
+                      required=""
+                      aria-required="true"
+                    >
+                    <span class="icon is-small is-left">
+                      <i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                  <div class="control">
+                    <input type="submit"
+                      value="Search"
+                      class="button is-outlined"
+                      @click="onSearch"
+                      :class="{
+                        'is-danger': !success,
+                        'is-info': busy,
+                        'is-white': success,
+                        'is-loading': busy
+                      }"
+                    >
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container content">
 
-      <h1>iTunes API - Search Audio and Video</h1>
+      <div class="columns">
 
-      <b-field label="">
-        <b-input v-model="term"></b-input>
-      </b-field>
-
-      <a class="button"
-        @click="onSearch"
-        :class="{
-          'is-danger': !success,
-          'is-info': busy,
-          'is-success': success,
-          'is-loading': busy
-        }">
-          search &nbsp;
-          <i class="fa fa-arrow-right" aria-hidden="true"></i>
-      </a>
-
-      <br>
-      <br>
-
-      <!-- <div class="columns">
         <div class="column is-one-third">
-          <div class="card"
-            v-for="(result, i) in getResults(1)"
+          <itunes-result v-for="(result, i) in getResults(1)"
             :key="i"
-            >
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img :src="result.artworkUrl100" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img :src="result.artworkUrl60" alt="Artist Artwork">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">{{ result.trackName }} - {{ result.collectionName }}</p>
-                  <p class="subtitle is-6">@ {{ result.artistName }}</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <a>{{ result.wrapperType }}</a>
-                <a>{{ result.kind }}</a>
-                <br>
-                <time :datetime="result.releaseDate">{{ result.releaseDate }}</time>
-              </div>
-            </div>
-          </div>
+            :result="result"
+          />
         </div>
 
         <div class="column is-one-third">
-          <div class="card"
-            v-for="(result, i) in getResults(2)"
+          <itunes-result v-for="(result, i) in getResults(2)"
             :key="i"
-            >
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img :src="result.artworkUrl100" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img :src="result.artworkUrl60" alt="Artist Artwork">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">{{ result.trackName }} - {{ result.collectionName }}</p>
-                  <p class="subtitle is-6">@ {{ result.artistName }}</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <a>{{ result.wrapperType }}</a>
-                <a>{{ result.kind }}</a>
-                <br>
-                <time :datetime="result.releaseDate">{{ result.releaseDate }}</time>
-              </div>
-            </div>
-          </div>
+            :result="result"
+          />
         </div>
 
         <div class="column is-one-third">
-          <div class="card"
-            v-for="(result, i) in getResults(3)"
+          <itunes-result v-for="(result, i) in getResults(3)"
             :key="i"
-            >
-            <div class="card-image">
-              <figure class="image">
-                <img :src="result.artworkUrl100" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image">
-                    <img :src="result.artworkUrl60" alt="Artist Artwork">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">{{ result.trackName }} - {{ result.collectionName }}</p>
-                  <p class="subtitle is-6">@ {{ result.artistName }}</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <a>{{ result.wrapperType }}</a>
-                <a>{{ result.kind }}</a>
-                <br>
-                <time :datetime="result.releaseDate">{{ result.releaseDate }}</time>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-<div class="columns">
-        <div class="column is-one-third">
-          <div class="card"
-            v-for="(result, i) in getResults(1)"
-            :key="i"
-            >
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img :src="result.artworkUrl100" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img :src="result.artworkUrl60" alt="Artist Artwork">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">{{ result.trackName }} - {{ result.collectionName }}</p>
-                  <p class="subtitle is-6">@ {{ result.artistName }}</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <a>{{ result.wrapperType }}</a>
-                <a>{{ result.kind }}</a>
-                <br>
-                <time :datetime="result.releaseDate">{{ result.releaseDate }}</time>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="card"
-            v-for="(result, i) in getResults(2)"
-            :key="i"
-            >
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img :src="result.artworkUrl100" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img :src="result.artworkUrl60" alt="Artist Artwork">
-                  </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">{{ result.trackName }} - {{ result.collectionName }}</p>
-                  <p class="subtitle is-6">@ {{ result.artistName }}</p>
-                </div>
-              </div>
-
-              <div class="content">
-                <a>{{ result.wrapperType }}</a>
-                <a>{{ result.kind }}</a>
-                <br>
-                <time :datetime="result.releaseDate">{{ result.releaseDate }}</time>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <article class="media"
-            v-for="(result, i) in getResults(1)"
-            :key="i"
-            >
-            <figure class="media-left">
-              <p class="image">
-                <img :src="result.artworkUrl100">
-              </p>
-            </figure>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong>{{ result.trackName }} - {{ result.collectionName }}</strong> <small>@ {{ result.artistName }}</small>
-                  <div class="tags has-addons">
-                    <span class="tag is-small"
-                      :class="{
-                        'is-info': result.wrapperType === `track`
-                      }"
-                      >{{ result.wrapperType }}</span>
-                    <span class="tag is-small"
-                      :class="{
-                        'is-primary': result.kind === `song`
-                      }"
-                      >{{ result.kind }}</span>
-                  </div>
-                  <br>
-                </p>
-              </div>
-              <nav class="level is-mobile">
-                <div class="level-left">
-                  <a class="level-item">
-                    <span class="icon is-small"><i class="fa fa-reply"></i></span>
-                  </a>
-                  <a class="level-item">
-                    <span class="icon is-small"><i class="fa fa-retweet"></i></span>
-                  </a>
-                  <a class="level-item">
-                    <span class="icon is-small"><i class="fa fa-heart"></i></span>
-                  </a>
-                </div>
-              </nav>
-            </div>
-            <div class="media-right">
-              <button class="delete"></button>
-            </div>
-          </article>
+            :result="result"
+          />
         </div>
       </div>
 
-      <!-- <br>
-      <br>
+    </div>
+  </section>
 
-      <pre style="padding:15px;">{{ getResults() }}</pre>
-
-      <pre style="padding:15px;">{{ this.response }}</pre> -->
-
+  <section class="hero is-light is-large">
+    <div class="hero-body">
+      <footer class="footer" style="height:100%;">
+        <div class="container">
+          <div class="content has-text-centered">
+            <p>
+              by <strong><a href="http://brngdsn.github.com">brngdsn</a></strong>
+              <br>
+              <!-- The source code is licensed
+              <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+              is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>. -->
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   </section>
 
 </div></template>
 
 <script>
+  import ItunesResult from '@/components/ItunesResult'
   import api from '../api/eg-api'
   import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'home',
+    components: {
+      ItunesResult
+    },
     data () {
       return {
         term: ``,
@@ -333,6 +182,9 @@
     },
     mounted () {
       console.log('* Mounted Home!')
+      this.$watch('term', () => {
+        this.response = null
+      })
     }
   }
 </script>
@@ -340,5 +192,9 @@
 <style scoped>
   .home {
 
+  }
+  .content figure {
+    margin: 0;
+    margin-right: 1rem;
   }
 </style>
